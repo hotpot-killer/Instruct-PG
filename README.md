@@ -51,7 +51,7 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 
 ## Contact
 
-For any queries or collaboration opportunities, please contact us at [your_email@example.com](mailto:wuzhenhua992@gmail.com).
+For any queries or collaboration opportunities, please contact us at [wuzhenhua992@gmail.com](mailto:wuzhenhua992@gmail.com).
 
 ---
 
