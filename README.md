@@ -1,53 +1,40 @@
-# Instruct-PG
+<h1 align="center">Instruct-PG: Enhancing Image Editing with Semantic and Preference Alignment</h1>
 Instruct-PG - Official Implementation
 
 
-# Instruct-PG: Enhancing Image Editing with Semantic and Preference Alignment
+## Introduction 
+This repo, named **Instruct-PG**, contains the official PyTorch implementation of our paper Instruct-PG: Enhancing Image Editing with Semantic and Preference Alignment.
+We are actively updating and improving this repository. If you find any bugs or have suggestions, welcome to raise issues or submit pull requests (PR).
 
-## Overview
-
-Image editing has become paramount in various applications, including virtual reality, computer-aided design, and video games.  However, existing approaches often struggle with accurately capturing human preferences and achieving semantic alignment due to reliance on noisy automatically generated datasets.  To address these challenges, we propose Instruct-PG, a novel image editing method that integrates large language models and diffusion models.  Our framework comprises two key modules: the Semantic Alignment Module, which fine-tunes a large language model to optimize editing instructions and adjusts diffusion model parameters for precise image reconstruction;  and the Preference Alignment Module, which aligns human preferences through a reward model trained on annotated datasets, further refining the diffusion model's denoising step.  Experimental results demonstrate that Instruct-PG outperforms existing methods in accurately capturing human preferences and semantic alignment across diverse editing categories.  The open-sourcing of our code and datasets will facilitate reproducibility and future research in this field.
-
-### Key Modules
-
-1. **Semantic Alignment Module**: This module fine-tunes a large language model to optimize editing instructions and adjusts diffusion model parameters for precise image reconstruction. It ensures that the edited images are semantically aligned with the user's instructions.
-
-2. **Preference Alignment Module**: This module aligns human preferences through a reward model trained on annotated datasets. It further refines the diffusion model's denoising step to cater to individual preferences.
-
-### Features
-
-- **State-of-the-art Performance**: Instruct-PG outperforms existing methods in accurately capturing human preferences and semantic alignment across diverse editing categories.
-- **Open Source**: The code and datasets are open-sourced to facilitate reproducibility and future research in this field.
-- **User-Centric Design**: The framework is designed to understand and adapt to user preferences, making it highly customizable.
-
-## Getting Started
-
-### Installation
-
-Clone the repository and install the required packages:
+## Getting Started 🏁
+### 1. Clone the code and prepare the environment 
 
 ```bash
 git clone https://github.com/yourusername/Instruct-PG.git
 cd Instruct-PG
+
+# create env using conda
+conda create -n InstructPG python=3.10
+conda activate InstructPG
 pip install -r requirements.txt
 ```
+### 2. Download pretrained weights
 
-### Usage
+#### 2.1 Download Stable Diffusion v1.5 weights
+```bash
+# !pip install -U "huggingface_hub[cli]"
+huggingface-cli download stable-diffusion-v1-5/stable-diffusion-v1-5
+```
+#### 2.2 Download ImageFLow weights
+You can download our preference model from [here](#).
+### 3. Train and Inference
+```
+python main.py
+```
 
-To get started with Instruct-PG, follow these steps:
-
-1. **Data Preparation**: Ensure you have the necessary datasets prepared and annotated as required by the framework.
-2. **Model Training**: Train the language and reward models using the provided scripts.
-3. **Image Editing**: Use the trained models to edit images according to user instructions and preferences.
-
-## Contributing
-
-We welcome contributions to Instruct-PG. Please refer to the `CONTRIBUTING.md` file for guidelines on how to contribute to this project.
-
-## License
-
-This project is licensed under the MIT License - see the `LICENSE` file for details.
-
+### 4. DataSets
+You can download our Preference Dataset from [here](#).
+You can also download our Image Editing Instruction Dataset from [here](#).
 
 ## Contact
 
@@ -56,3 +43,6 @@ For any queries or collaboration opportunities, please contact us at [wuzhenhua9
 ---
 
 Feel free to explore the code, raise issues, or submit pull requests to enhance the framework further. Happy editing!
+
+### Open Source Plan
+We are excited to announce that Instruct-PG will be fully open-sourced in the near future! We aim to promote innovation and development within the community by making the source code freely available, thereby advancing image editing technology together.
