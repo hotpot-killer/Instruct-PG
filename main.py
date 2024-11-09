@@ -2,11 +2,11 @@ import torch
 import os
 from PIL import Image
 from diffusers import DDIMScheduler
-from Instruct_pg import InstructPGStableDiffusionPipeline
+from instruct_pg import InstructPGStableDiffusionPipeline
 from diffusers.utils import load_image
 
 pipe = InstructPGStableDiffusionPipeline.from_pretrained(
-    "/data/wzh/hf_cache/hub/stable-diffusion/stable-diffusion-v1-5",
+    "./models",
     scheduler=DDIMScheduler(
         beta_start=0.00085,
         beta_end=0.012,
@@ -19,7 +19,7 @@ pipe = InstructPGStableDiffusionPipeline.from_pretrained(
 generator = torch.Generator("cuda").manual_seed(0)
 seed = 0
 prompt = "Hayley Atwell est l'Agent Cat Carter."
-url = "/data/dataset/ImageTextRewardDB/images/0000063/prompt.jpg"
+url = ".images/0000063/prompt.jpg"
 source_image = load_image(url)
 width, height = source_image.size
 min_dimension = min(width, height)

@@ -29,7 +29,7 @@ from diffusers.utils import logging
 
 from packaging import version
 import random
-import ImageFlow
+import ImageFlowUtils
 from torchvision.transforms import Compose, Resize, CenterCrop, Normalize
 from datasets import load_dataset
 logger = logging.get_logger(__name__)
@@ -337,7 +337,7 @@ class InstructPGStableDiffusionPipeline(DiffusionPipeline, StableDiffusionMixin)
                     captions.append(random.choice(caption) if is_train else caption[0])
                 else:
                     raise ValueError(
-                        f"Caption column `{"prompt"}` should contain either strings or lists of strings."
+                        f"Caption column `{'prompt'}` should contain either strings or lists of strings."
                     )
             inputs = self.tokenizer(
                 captions,
