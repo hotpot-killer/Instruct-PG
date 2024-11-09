@@ -16,6 +16,8 @@ cd Instruct-PG
 # create env using conda
 conda create -n InstructPG python=3.10
 conda activate InstructPG
+# For CUDA 11.8, replace cu124 with cu118; For 12.1, replace cu124 with cu121.
+pip3 install torch==2.4.0 torchaudio==2.4.0 torchvision==0.19.0 transformers==4.44.2 triton==3.0.0 MarkupSafe==2.1.5 --index-url https://download.pytorch.org/whl/cu124
 pip install -r requirements.txt
 ```
 ### 2. Download pretrained weights
@@ -23,15 +25,16 @@ pip install -r requirements.txt
 #### 2.1 Download Stable Diffusion v1.5 weights
 ```bash
 # !pip install -U "huggingface_hub[cli]"
-huggingface-cli download stable-diffusion-v1-5/stable-diffusion-v1-5
+huggingface-cli download stable-diffusion-v1-5/stable-diffusion-v1-5 --local-dir ./model
 ```
+
 #### 2.2 Download ImageFLow weights
 You can download our preference model from [here](#).
 ### 3. Train and Inference
 ```
 python main.py
 ```
-
+> note: You should download Stable Diffusion v1.5 weights to ./model. If you have downloaded it into other place you can edit the main.py, create a symbol link or copy it to ./model.
 ### 4. DataSets
 You can download our Preference Dataset from [here](#).
 You can also download our Image Editing Instruction Dataset from [here](#).
