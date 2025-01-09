@@ -5,8 +5,8 @@ from diffusers import DDIMScheduler
 from Instruct_pg import InstructPGStableDiffusionPipeline
 from diffusers.utils import load_image
 
-pipe = InstructPGStableDiffusionPipeline.from_pretrained(
-    "/data/wzh/hf_cache/hub/stable-diffusion/stable-diffusion-v1-5",
+pipeline = InstructPGStableDiffusionPipeline.from_pretrained(
+    "stable-diffusion-v1-5/stable-diffusion-v1-5",
     scheduler=DDIMScheduler(
         beta_start=0.00085,
         beta_end=0.012,
@@ -18,8 +18,8 @@ pipe = InstructPGStableDiffusionPipeline.from_pretrained(
 
 generator = torch.Generator("cuda").manual_seed(0)
 seed = 0
-prompt = "Hayley Atwell est l'Agent Cat Carter."
-url = "/data/dataset/ImageTextRewardDB/images/0000063/prompt.jpg"
+prompt = "Giclee Print - Seven Crows in the Marsh - 20 x 30"
+url = "./data/prompt.png"
 source_image = load_image(url)
 width, height = source_image.size
 min_dimension = min(width, height)
@@ -32,7 +32,7 @@ bottom = (height + min_dimension) / 2
 final_source = source_image.crop((left, top, right, bottom))
 final_source = final_source.resize((512, 512), Image.LANCZOS)
 
-res = pipe.train(
+train_pipe = pipeline.train(
     prompt,
     image=final_source,
     generator=generator,
@@ -40,7 +40,7 @@ res = pipe.train(
     model_fine_tuning_optimization_steps=10,
 )
 
-res = pipe(guidance_scale=7.5, num_inference_steps=50)
+images = train_pipe(guidance_scale=7.5, num_inference_steps=50).images
 os.makedirs("output", exist_ok=True)
-image = res.images[0]
-image.save("./output/instructpg_image.png")
+image = images[0]
+image.save("./output/image.png")

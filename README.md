@@ -18,6 +18,10 @@ conda create -n InstructPG python=3.10
 conda activate InstructPG
 pip install -r requirements.txt
 ```
+# Nvidia users should install stable pytorch using this command:
+```bash
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu124
+```
 ### 2. Download pretrained weights
 
 #### 2.1 Download Stable Diffusion v1.5 weights
